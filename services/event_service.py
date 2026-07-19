@@ -94,6 +94,7 @@ def process_event(db: Session, payload: IngestEventRequest) -> IngestEventRespon
             status_set_clause = """
                 payment_status = :payment_status,
                 settlement_status = :settlement_status,
+                version = transactions.version + 1,
                 updated_at = :updated_at
             """
             status_params = {
@@ -104,6 +105,7 @@ def process_event(db: Session, payload: IngestEventRequest) -> IngestEventRespon
         elif transition["payment_status"]:
             status_set_clause = """
                 payment_status = :payment_status,
+                version = transactions.version + 1,
                 updated_at = :updated_at
             """
             status_params = {
@@ -113,6 +115,7 @@ def process_event(db: Session, payload: IngestEventRequest) -> IngestEventRespon
         else:
             status_set_clause = """
                 settlement_status = :settlement_status,
+                version = transactions.version + 1,
                 updated_at = :updated_at
             """
             status_params = {
@@ -124,11 +127,11 @@ def process_event(db: Session, payload: IngestEventRequest) -> IngestEventRespon
             text(f"""
                 INSERT INTO transactions (
                     id, merchant_id, amount, currency,
-                    payment_status, settlement_status,
+                    payment_status, settlement_status, version,
                     created_at, updated_at
                 ) VALUES (
                     :id, :merchant_id, :amount, :currency,
-                    :payment_status, :settlement_status,
+                    :payment_status, :settlement_status, 1,
                     :created_at, :updated_at
                 )
                 ON CONFLICT (id) DO UPDATE SET

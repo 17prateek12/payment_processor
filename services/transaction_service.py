@@ -105,6 +105,7 @@ def get_transactions(
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             t.created_at,
             t.updated_at
         FROM transactions t
@@ -145,6 +146,7 @@ def get_transaction_by_id(db: Session, transaction_id: str):
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             t.created_at,
             t.updated_at
         FROM transactions t

@@ -1,0 +1,288 @@
+{
+  "info": {
+    "name": "Setu Payment Processor API",
+    "description": "Postman collection for the Solutions Engineer Take-Home Assignment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Ingest Event (payment_initiated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_id\": \"test_event_init_1\",\n  \"event_type\": \"payment_initiated\",\n  \"transaction_id\": \"test_txn_1\",\n  \"merchant_id\": \"merchant_1\",\n  \"merchant_name\": \"QuickMart\",\n  \"amount\": 1500.0,\n  \"currency\": \"INR\",\n  \"timestamp\": \"2026-07-19T12:00:00+00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/events",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ingest Event (payment_processed)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_id\": \"test_event_proc_1\",\n  \"event_type\": \"payment_processed\",\n  \"transaction_id\": \"test_txn_1\",\n  \"merchant_id\": \"merchant_1\",\n  \"merchant_name\": \"QuickMart\",\n  \"amount\": 1500.0,\n  \"currency\": \"INR\",\n  \"timestamp\": \"2026-07-19T12:05:00+00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/events",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ingest Event (settled)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_id\": \"test_event_set_1\",\n  \"event_type\": \"settled\",\n  \"transaction_id\": \"test_txn_1\",\n  \"merchant_id\": \"merchant_1\",\n  \"merchant_name\": \"QuickMart\",\n  \"amount\": 1500.0,\n  \"currency\": \"INR\",\n  \"timestamp\": \"2026-07-19T12:10:00+00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/events",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "events"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "List Transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/transactions?page=1&page_size=20&sort_by=created_at&sort_order=desc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "merchant_id",
+                  "value": "merchant_2",
+                  "disabled": true
+                },
+                {
+                  "key": "payment_status",
+                  "value": "processed",
+                  "disabled": true
+                },
+                {
+                  "key": "settlement_status",
+                  "value": "settled",
+                  "disabled": true
+                },
+                {
+                  "key": "date_from",
+                  "value": "2026-01-08",
+                  "disabled": true
+                },
+                {
+                  "key": "date_to",
+                  "value": "2026-01-10",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "created_at"
+                },
+                {
+                  "key": "sort_order",
+                  "value": "desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Transaction Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/transactions/{{transaction_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transactions",
+                "{{transaction_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reconciliation",
+      "item": [
+        {
+          "name": "Reconciliation Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reconciliation/summary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reconciliation",
+                "summary"
+              ],
+              "query": [
+                {
+                  "key": "merchant_id",
+                  "value": "merchant_1",
+                  "disabled": true
+                },
+                {
+                  "key": "date_from",
+                  "value": "2026-01-08",
+                  "disabled": true
+                },
+                {
+                  "key": "date_to",
+                  "value": "2026-01-15",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reconciliation Discrepancies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reconciliation/discrepancies",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reconciliation",
+                "discrepancies"
+              ],
+              "query": [
+                {
+                  "key": "merchant_id",
+                  "value": "merchant_2",
+                  "disabled": true
+                },
+                {
+                  "key": "date_from",
+                  "value": "2026-01-08",
+                  "disabled": true
+                },
+                {
+                  "key": "date_to",
+                  "value": "2026-01-15",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "transaction_id",
+      "value": "2f86e94c-239c-4302-9874-75f28e3474ee",
+      "type": "string"
+    }
+  ]
+}

@@ -104,6 +104,7 @@ def get_reconciliation_discrepancies(
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             'PROCESSED_NOT_SETTLED'     AS discrepancy_reason,
             t.created_at,
             t.updated_at
@@ -125,6 +126,7 @@ def get_reconciliation_discrepancies(
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             'FAILED_BUT_SETTLED'        AS discrepancy_reason,
             t.created_at,
             t.updated_at
@@ -148,6 +150,7 @@ def get_reconciliation_discrepancies(
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             'DOUBLE_SETTLED'            AS discrepancy_reason,
             t.created_at,
             t.updated_at
@@ -176,6 +179,7 @@ def get_reconciliation_discrepancies(
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             'FAILED_AFTER_PROCESSED'    AS discrepancy_reason,
             t.created_at,
             t.updated_at
@@ -201,6 +205,7 @@ def get_reconciliation_discrepancies(
             t.currency,
             t.payment_status,
             t.settlement_status,
+            t.version,
             'SETTLED_WITHOUT_PROCESSING' AS discrepancy_reason,
             t.created_at,
             t.updated_at

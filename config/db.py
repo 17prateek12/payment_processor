@@ -37,4 +37,4 @@ def init_db():
     with engine.connect() as conn:
         conn.execute(text(sql))
         conn.commit()
-    print("✅ Database schema initialized successfully")
+    print("Database schema initialized successfully")

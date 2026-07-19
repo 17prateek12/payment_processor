@@ -13,9 +13,13 @@ CREATE TABLE IF NOT EXISTS transactions(
     currency VARCHAR(10) NOT NULL,
     payment_status VARCHAR(20) NOT NULL DEFAULT 'initiated',
     settlement_status VARCHAR(20) NOT NULL DEFAULT 'unsettled',
+    version INTEGER NOT NULL DEFAULT 1,
     created_at TIMESTAMPTZ NOT NULL,
     updated_at TIMESTAMPTZ NOT NULL   
 );
+
+-- Migration query: ensure version column exists if table is already created
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS version INTEGER NOT NULL DEFAULT 1;
 
 --event
 CREATE TABLE IF NOT EXISTS events(

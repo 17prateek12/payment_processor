@@ -34,6 +34,7 @@ class TransactionSummary(BaseModel):
     currency: str
     payment_status: str
     settlement_status: str
+    version: int
     created_at: datetime
     updated_at: datetime
 
@@ -62,6 +63,7 @@ class TransactionDetailResponse(BaseModel):
     currency: str
     payment_status: str
     settlement_status: str
+    version: int
     created_at: datetime
     updated_at: datetime
     event_history: list[EventHistory]
@@ -93,6 +95,7 @@ class DiscrepancyItem(BaseModel):
     currency: str
     payment_status: str
     settlement_status: str
+    version: int
     discrepancy_reason: str
     created_at: datetime
     updated_at: datetime
