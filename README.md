@@ -4,7 +4,12 @@ A backend service for ingesting payment lifecycle events, maintaining transactio
 
 Built with FastAPI + PostgreSQL.
 
+```
 Here the live Link of service: https://payment-processor-jccr.onrender.com
+Video Demo: https://drive.google.com/file/d/1to0nsNbdgodXo7A4oShLUf9AQ6R057HL/view?usp=sharing
+GitHub URL: https://github.com/17prateek12/payment_processor
+```
+
 ---
 
 ## Architecture Overview
