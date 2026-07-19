@@ -37,8 +37,8 @@ def seed_database():
     parser.add_argument(
         "--workers",
         type=int,
-        default=20,
-        help="Number of concurrent workers for sending requests (default: 20)"
+        default=100,
+        help="Number of concurrent workers for sending requests (default: 100)"
     )
     args = parser.parse_args()
 

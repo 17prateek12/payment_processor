@@ -168,9 +168,6 @@ def get_reconciliation_discrepancies(
         UNION ALL
 
         -- ── Type 3b: FAILED_AFTER_PROCESSED ─────────────────────────────
-        -- transaction has both payment_processed and payment_failed events
-        -- payment cannot fail after it already succeeded
-        -- source of truth: event history, not just current transaction status
         SELECT
             t.id                        AS transaction_id,
             t.merchant_id,
@@ -195,8 +192,6 @@ def get_reconciliation_discrepancies(
         UNION ALL
 
         -- ── Type 3c: SETTLED_WITHOUT_PROCESSING ─────────────────────────
-        -- transaction has a settled event but no payment_processed event
-        -- settlement arrived for a payment that was never confirmed processed
         SELECT
             t.id                        AS transaction_id,
             t.merchant_id,
