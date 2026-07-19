@@ -50,7 +50,7 @@ SQL queries directly against PostgreSQL
 ### 1. Clone and set up environment
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/17prateek12/payment_processor
 cd payment_processor
 cp .env.example .env
 ```
